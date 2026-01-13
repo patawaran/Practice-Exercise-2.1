@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form w/ Validation</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            margin: 0;
+            background: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 360px;
+            padding: 24px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        label {
+            display: block;
+            margin-top: 14px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        #message {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+
+    <form id="registrationForm">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="John Doe">
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="example@email.com">
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="******">
+
+        <label>Phone</label>
+        <input type="tel" id="phone" placeholder="1234567890">
+
+        <label>Gender</label>
+        <select id="gender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <button type="submit">Register</button>
+        <p id="message"></p>
+    </form>
+</div>
+
+<script>
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const phone = document.getElementById("phone").value.trim();
+        const gender = document.getElementById("gender").value;
+        const message = document.getElementById("message");
+
+        if (!name || !email || !password || !phone || !gender) {
+            message.style.color = "red";
+            message.textContent = "Please fill in all fields.";
+            return;
+        }
+
+        if (password.length < 6) {
+            message.style.color = "red";
+            message.textContent = "Password must be at least 6 characters.";
+            return;
+        }
+
+        message.style.color = "green";
+        message.textContent = "Registration successful!";
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
